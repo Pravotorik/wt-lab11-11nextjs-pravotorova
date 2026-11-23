@@ -40,7 +40,7 @@ type Room = {
 async function getRooms(): Promise<Room[]> {
   // Оставляем fetch как есть. Next.js увидит instant = false и не будет пытаться
   // сделать страницу статической на этапе сборки.
-  const response = await fetch("http://localhost:3000/api/rooms");
+  const response = await fetch("/api/rooms");
   return response.json();
 }
 
