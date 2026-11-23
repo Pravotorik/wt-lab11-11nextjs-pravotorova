@@ -2,7 +2,7 @@ export const instant = false;
 export default async function RoomDetails({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
-    const res = await fetch("http://localhost:3000/api/rooms", { cache: "no-store" });
+    const res = await fetch("/api/rooms", { cache: "no-store" });
     const rooms = await res.json();
     const room = rooms.find((r: any) => r.id === Number(id));
 
