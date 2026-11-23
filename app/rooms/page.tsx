@@ -25,8 +25,8 @@
 
 import RoomCard from "../components/RoomCard";
 
-// Указываем Next.js, что странице разрешено ждать данные при загрузке
-export const instant = false; 
+// Отключаем проверку "мгновенной навигации" для этой страницы
+export const instant = false;
 
 type Room = {
   id: number;
@@ -38,9 +38,9 @@ type Room = {
 };
 
 async function getRooms(): Promise<Room[]> {
-  // Оставляем fetch как есть. Next.js увидит instant = false и не будет пытаться
-  // сделать страницу статической на этапе сборки.
-  const response = await fetch("/api/rooms");
+  // Берем адрес из переменной окружения Render, иначе используем localhost
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const response = await fetch(`${baseUrl}/api/rooms`);
   return response.json();
 }
 
